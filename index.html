@@ -66,7 +66,7 @@
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Service</a>
 
-                    
+
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
             </div>
@@ -93,7 +93,23 @@
                                 </div>
                             </div> <!-- Book Appointment Button -->
                             <div class="col-md-6 d-flex align-items-center justify-content-start"> <a
-                                    href="appointment.html" class="btn btn-primary py-3 px-4"> Book Appointment </a>
+                                    id="bookAppointment" class="btn btn-primary py-3 px-4"> Book Appointment </a>
+                                <script>
+                                    document.getElementById("bookAppointment").addEventListener("click", function () {
+                                        // WhatsApp number (with country code, no + sign in URL)
+                                        const phoneNumber = "919935528767";
+
+                                        // Optional: Predefined message
+                                        const message = encodeURIComponent("Hello! I want to book an appointment.");
+
+                                        // WhatsApp redirect link
+                                        const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+                                        // Redirect to WhatsApp
+                                        window.open(whatsappURL, "_blank");
+                                    });
+                                </script>
+
                             </div>
                         </div>
                     </div>
@@ -234,166 +250,178 @@
         <!-- Service End -->
 
 
-<!-- Smart Premium Video Slider (Auto-play & Pause on Scroll) -->
-<style>
-    .video-section {
-        background: #0d0d0d;
-        padding: 40px 0;
-        text-align: center;
-        color: #d4af37;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .video-section h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-        font-weight: 600;
-        color: #d4af37;
-    }
-
-    .video-wrapper {
-        position: relative;
-        width: 85%;
-        margin: auto;
-        border-radius: 18px;
-        padding: 4px;
-        background: linear-gradient(45deg, #d4af37, #ffd700, #d4af37);
-        animation: glow 2.5s linear infinite alternate;
-    }
-
-    @keyframes glow {
-        0% { box-shadow: 0 0 10px #d4af37, 0 0 20px #ffd700, 0 0 30px #d4af37; }
-        50% { box-shadow: 0 0 15px #d4af37, 0 0 30px #ffd700, 0 0 45px #d4af37; }
-        100% { box-shadow: 0 0 10px #d4af37, 0 0 20px #ffd700, 0 0 30px #d4af37; }
-    }
-
-    video {
-        width: 100%;
-        border-radius: 12px;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        display: block;
-        height: 240px;
-    }
-
-    video.fade-in { opacity: 1; }
-
-    .video-controls { margin-top: 15px; }
-
-    .video-btn {
-        background: transparent;
-        border: 1.5px solid #d4af37;
-        color: #d4af37;
-        padding: 8px 20px;
-        font-size: 15px;
-        border-radius: 6px;
-        margin: 0 6px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .video-btn:hover {
-        background: #d4af37;
-        color: #0d0d0d;
-    }
-
-    .progress-container {
-        width: 85%;
-        height: 5px;
-        background: rgba(212, 175, 55, 0.3);
-        margin: 12px auto 0 auto;
-        border-radius: 3px;
-        overflow: hidden;
-    }
-
-    .progress-bar {
-        height: 100%;
-        width: 0%;
-        background: #d4af37;
-        transition: width 0.1s linear;
-    }
-</style>
-
-<div class="video-section" id="videoSection">
-    <h2>Our Work Showcase</h2>
-
-    <div class="video-wrapper">
-        <video id="videoPlayer" playsinline controls>
-            <source id="videoSource" src="img/bride.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div class="video-controls">
-        <button class="video-btn" onclick="prevVideo()">Previous</button>
-        <button class="video-btn" onclick="nextVideo()">Next</button>
-    </div>
-
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
-</div>
-
-<script>
-    const videos = ["img/bride.mp4","img/Video-941.mp4","img/bride2.mp4"];
-    let videoIndex = 0;
-    const videoPlayer = document.getElementById("videoPlayer");
-    const videoSource = document.getElementById("videoSource");
-    const progressBar = document.getElementById("progressBar");
-    let progressInterval;
-
-    function loadVideo(index) {
-        videoPlayer.classList.remove("fade-in");
-        setTimeout(() => {
-            videoSource.src = videos[index];
-            videoPlayer.load();
-            videoPlayer.play().catch(() => {}); // play with sound
-            videoPlayer.classList.add("fade-in");
-            startProgress();
-        }, 200);
-    }
-
-    function nextVideo() { videoIndex = (videoIndex+1)%videos.length; loadVideo(videoIndex); }
-    function prevVideo() { videoIndex = (videoIndex-1+videos.length)%videos.length; loadVideo(videoIndex); }
-
-    videoPlayer.addEventListener("ended", () => nextVideo());
-
-    function startProgress() {
-        clearInterval(progressInterval);
-        progressBar.style.width="0%";
-        progressInterval = setInterval(()=>{
-            if(videoPlayer.duration){
-                let percent = (videoPlayer.currentTime/videoPlayer.duration)*100;
-                progressBar.style.width = percent+"%";
+        <!-- Smart Premium Video Slider (Auto-play & Pause on Scroll) -->
+        <style>
+            .video-section {
+                background: #0d0d0d;
+                padding: 40px 0;
+                text-align: center;
+                color: #d4af37;
+                font-family: 'Poppins', sans-serif;
             }
-        },100);
-    }
 
-    // Swipe support
-    let touchStartX = 0, touchEndX = 0;
-    videoPlayer.addEventListener("touchstart", e=>touchStartX=e.changedTouches[0].screenX);
-    videoPlayer.addEventListener("touchend", e=>{ touchEndX=e.changedTouches[0].screenX; handleSwipe(); });
-    function handleSwipe(){ if(touchEndX < touchStartX-40) nextVideo(); if(touchEndX > touchStartX+40) prevVideo(); }
+            .video-section h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                font-weight: 600;
+                color: #d4af37;
+            }
 
-    // Scroll detection for auto-play/pause
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return rect.top < window.innerHeight && rect.bottom > 0;
-    }
+            .video-wrapper {
+                position: relative;
+                width: 85%;
+                margin: auto;
+                border-radius: 18px;
+                padding: 4px;
+                background: linear-gradient(45deg, #d4af37, #ffd700, #d4af37);
+                animation: glow 2.5s linear infinite alternate;
+            }
 
-    function handleScroll() {
-        const section = document.getElementById("videoSection");
-        if(isInViewport(section)){
-            // Play if visible
-            if(videoPlayer.paused) loadVideo(videoIndex);
-        } else {
-            // Pause if not visible
-            videoPlayer.pause();
-        }
-    }
+            @keyframes glow {
+                0% {
+                    box-shadow: 0 0 10px #d4af37, 0 0 20px #ffd700, 0 0 30px #d4af37;
+                }
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("load", handleScroll);
-</script>
+                50% {
+                    box-shadow: 0 0 15px #d4af37, 0 0 30px #ffd700, 0 0 45px #d4af37;
+                }
+
+                100% {
+                    box-shadow: 0 0 10px #d4af37, 0 0 20px #ffd700, 0 0 30px #d4af37;
+                }
+            }
+
+            video {
+                width: 100%;
+                border-radius: 12px;
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
+                display: block;
+                height: 240px;
+            }
+
+            video.fade-in {
+                opacity: 1;
+            }
+
+            .video-controls {
+                margin-top: 15px;
+            }
+
+            .video-btn {
+                background: transparent;
+                border: 1.5px solid #d4af37;
+                color: #d4af37;
+                padding: 8px 20px;
+                font-size: 15px;
+                border-radius: 6px;
+                margin: 0 6px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .video-btn:hover {
+                background: #d4af37;
+                color: #0d0d0d;
+            }
+
+            .progress-container {
+                width: 85%;
+                height: 5px;
+                background: rgba(212, 175, 55, 0.3);
+                margin: 12px auto 0 auto;
+                border-radius: 3px;
+                overflow: hidden;
+            }
+
+            .progress-bar {
+                height: 100%;
+                width: 0%;
+                background: #d4af37;
+                transition: width 0.1s linear;
+            }
+        </style>
+
+        <div class="video-section" id="videoSection">
+            <h2>Our Work Showcase</h2>
+
+            <div class="video-wrapper">
+                <video id="videoPlayer" playsinline controls>
+                    <source id="videoSource" src="img/bride.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="video-controls">
+                <button class="video-btn" onclick="prevVideo()">Previous</button>
+                <button class="video-btn" onclick="nextVideo()">Next</button>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <script>
+            const videos = ["img/bride.mp4", "img/Video-941.mp4", "img/bride2.mp4"];
+            let videoIndex = 0;
+            const videoPlayer = document.getElementById("videoPlayer");
+            const videoSource = document.getElementById("videoSource");
+            const progressBar = document.getElementById("progressBar");
+            let progressInterval;
+
+            function loadVideo(index) {
+                videoPlayer.classList.remove("fade-in");
+                setTimeout(() => {
+                    videoSource.src = videos[index];
+                    videoPlayer.load();
+                    videoPlayer.play().catch(() => { }); // play with sound
+                    videoPlayer.classList.add("fade-in");
+                    startProgress();
+                }, 200);
+            }
+
+            function nextVideo() { videoIndex = (videoIndex + 1) % videos.length; loadVideo(videoIndex); }
+            function prevVideo() { videoIndex = (videoIndex - 1 + videos.length) % videos.length; loadVideo(videoIndex); }
+
+            videoPlayer.addEventListener("ended", () => nextVideo());
+
+            function startProgress() {
+                clearInterval(progressInterval);
+                progressBar.style.width = "0%";
+                progressInterval = setInterval(() => {
+                    if (videoPlayer.duration) {
+                        let percent = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+                        progressBar.style.width = percent + "%";
+                    }
+                }, 100);
+            }
+
+            // Swipe support
+            let touchStartX = 0, touchEndX = 0;
+            videoPlayer.addEventListener("touchstart", e => touchStartX = e.changedTouches[0].screenX);
+            videoPlayer.addEventListener("touchend", e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); });
+            function handleSwipe() { if (touchEndX < touchStartX - 40) nextVideo(); if (touchEndX > touchStartX + 40) prevVideo(); }
+
+            // Scroll detection for auto-play/pause
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return rect.top < window.innerHeight && rect.bottom > 0;
+            }
+
+            function handleScroll() {
+                const section = document.getElementById("videoSection");
+                if (isInViewport(section)) {
+                    // Play if visible
+                    if (videoPlayer.paused) loadVideo(videoIndex);
+                } else {
+                    // Pause if not visible
+                    videoPlayer.pause();
+                }
+            }
+
+            window.addEventListener("scroll", handleScroll);
+            window.addEventListener("load", handleScroll);
+        </script>
 
 
 
@@ -447,21 +475,17 @@
         </div>
         <!-- Testimonial End -->
 
-<section class="container my-5">
-    <h3 class="text-center mb-4">Our Location</h3>
+        <section class="container my-5">
+            <h3 class="text-center mb-4">Our Location</h3>
 
-    <div style="width: 100%; height: 400px;">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.4848679327415!2d81.8330561!3d25.455480200000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acac360af31cd%3A0xed64b221edd25485!2sStreets%20salon%20by%20Deepti.%20Best%20salon%20services%20in%20prayagraj!5e0!3m2!1sen!2sin!4v1763763585538!5m2!1sen!2sin" 
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-</section>
+            <div style="width: 100%; height: 400px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.4848679327415!2d81.8330561!3d25.455480200000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acac360af31cd%3A0xed64b221edd25485!2sStreets%20salon%20by%20Deepti.%20Best%20salon%20services%20in%20prayagraj!5e0!3m2!1sen!2sin!4v1763763585538!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
 
 
         <!-- Footer Start -->
@@ -484,11 +508,15 @@
                         <p class="mb-2"><i class="fa fa-phone-alt me-2"></i>+919935528767</p>
                         <p><i class="fa fa-envelope me-2"></i>deeptimehta1978@gmail.com</p>
                         <div class="d-flex justify-content-start mt-4">
-                            <a class="btn btn-sm-square btn-primary me-3" href="https://www.facebook.com/people/Streets-Salon-by-deepti/100064071369982/?ref=_xav_ig_profile_page_web#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary me-3" href="https://www.instagram.com/streetssalonbydeepti_"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-sm-square btn-primary me-3"
+                                href="https://www.facebook.com/people/Streets-Salon-by-deepti/100064071369982/?ref=_xav_ig_profile_page_web#"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary me-3"
+                                href="https://www.instagram.com/streetssalonbydeepti_"><i
+                                    class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
