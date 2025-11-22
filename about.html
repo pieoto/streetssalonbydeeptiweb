@@ -44,38 +44,50 @@
     <!-- Spinner End -->
 
 
-    <!-- Navbar Start -->
+     <!-- Navbar Start -->
     <div class="container-fluid bg-light sticky-top p-0">
-        <nav class="navbar navbar-expand-lg navbar-light p-0">
-            <a href="index.html" class="navbar-brand me-0" style="padding: 0; margin: 0;">
+        <nav class="navbar navbar-expand-lg navbar-light p-3">
+            <!-- Logo + Text -->
+            <a href="index.html" class="navbar-brand d-flex align-items-center" style="padding: 0; margin: 0;">
                 <img src="img/logosalon.jpg" alt="Salon Logo" style="height:65px; width:auto; object-fit:contain;">
+                <h1 class="font-dancing-script text-primary animated slideInLeft"
+                    style="margin-left: 5px; font-size: 28px; white-space: nowrap;">
+                    streetssalonbydeepti
+                </h1>
             </a>
 
-
-
-
-
-            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
+            <!-- Toggler button -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse p-3" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
+            <!-- Navigation links -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
                     <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Service</a>
-
-                   
-
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
             </div>
         </nav>
     </div>
-
-
     <!-- Navbar End -->
+
+    <style>
+        /* Make logo + text shrink on very small screens */
+        @media (max-width: 480px) {
+            .navbar-brand h1 {
+                font-size: 20px;
+            }
+
+            .navbar-brand img {
+                height: 50px;
+            }
+        }
+    </style>
+
 
 
     <!-- Hero Start -->
@@ -144,7 +156,45 @@
         <!-- About End -->
 
 
-   
+    <!-- Owner's Perspective Section Start -->
+        <div class="container-fluid py-5" style="background: #0d0d0d; color: #d4af37;">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="font-dancing-script" style="font-size: 36px; color: #ffd700;">A Message from Our Founder</h2>
+                    
+                </div>
+
+                <div class="row justify-content-center align-items-center">
+                    <!-- Owner Image -->
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <div
+                            style="display: inline-block; border: 4px solid #d4af37; border-radius: 50%; padding: 4px; box-shadow: 0 0 20px #d4af37, 0 0 40px #ffd700;">
+                            <img src="img/owner.jpg" alt="Owner"
+                                style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%;">
+                        </div>
+                    </div>
+
+                    <!-- Owner Text -->
+                    <div class="col-md-6">
+                        <p style="font-size: 18px; line-height: 1.8; color: #f5e1a4;">
+                            "At Streets Salon by Deepti, every client who walks through our doors becomes a part of our
+                            story.
+
+                            As the owner, I’ve built this salon, 15 years ago, with one intention— to create a space
+                            where women feel genuinely cared for, understood, and celebrated.
+
+                            Our team works with heart, not just hands, and every service is designed to make you feel
+                            your most confident self.
+
+                            Watching our clients leave with a smile is the biggest reward, and it’s what keeps us
+                            striving for excellence every day."
+                        </p>
+                        <h5 style="color: #ffd700; margin-top: 20px;">- Deepti, Founder @streetssalonbydeepti</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Owner's Perspective Section End -->
         
 
         <!-- Footer Start -->
